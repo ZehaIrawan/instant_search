@@ -1,0 +1,41 @@
+<input type="text" id="search_query" placeholder="Search">
+
+<div id="search_results">
+  <!-- Results will be displayed here -->
+</div>
+
+<div id="search-results">
+  <% if @results.present? %>
+    <% @results.each do |result| %>
+      <h2><%= result.title %></h2>
+      <p><%= result.content %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.getElementById('search_query');
+  var searchResults = document.getElementById('search_results');
+
+  searchInput.addEventListener('input', function() {
+    var query = searchInput.value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var response = xhr.responseText;
+          searchResults.innerHTML = response; // Update the results div with the response
+        } else {
+          console.error('Search request failed.');
+        }
+      }
+    };
+
+    xhr.open('GET', '/search?query=' + encodeURIComponent(query), true);
+    xhr.send();
+  });
+});
+
+</script>

@@ -1,4 +1,9 @@
+<div id="search-results">
+  <%= render partial: 'shared/search_results', locals: { results: @results } %>
+</div>
+
 <% @articles.each do |article| %>
   <h2><%= article.title %></h2>
   <p><%= article.content %></p>
 <% end %>
+
