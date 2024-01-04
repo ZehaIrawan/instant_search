@@ -1,0 +1,17 @@
+<%= form_with(url: search_path, method: :get) do |form| %>
+  <%= form.text_field :query, placeholder: "Search..." %>
+  <%= form.button type: "submit", name: nil do %>
+    Search
+  <% end %>
+<% end %>
+
+<div id="search-results">
+  <% if @results.present? %>
+    <% @results.each do |result| %>
+      <h2><%= result.title %></h2>
+      <p><%= result.content %></p>
+    <% end %>
+  <% else %>
+    <p>No results found</p>
+  <% end %>
+</div>
