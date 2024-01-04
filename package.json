@@ -2,6 +2,7 @@
   "name": "instant-search",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.23.7",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@rails/actioncable": "6.0.0",
     "@rails/activestorage": "6.0.0",
