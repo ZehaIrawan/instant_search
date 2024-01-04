@@ -1,0 +1,19 @@
+// search.js.erb
+
+// Clear previous search results
+document.getElementById('search_results').innerHTML = '';
+
+<% if @results.any? %>
+  // Display search results
+  <% @results.each do |result| %>
+    // Customize the display of each search result here
+    var resultItem = document.createElement('div');
+    resultItem.textContent = '<%= result.title %>'; // Display the title, modify as needed
+    document.getElementById('search_results').appendChild(resultItem);
+  <% end %>
+<% else %>
+  // Display a message for no results
+  var noResultMessage = document.createElement('p');
+  noResultMessage.textContent = 'No results found.';
+  document.getElementById('search_results').appendChild(noResultMessage);
+<% end %>

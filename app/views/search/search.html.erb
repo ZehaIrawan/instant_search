@@ -1,9 +1,11 @@
-<%= form_with(url: search_path, method: :get) do |form| %>
-  <%= form.text_field :query, placeholder: "Search..." %>
-  <%= form.button type: "submit", name: nil do %>
-    Search
-  <% end %>
+<%= form_tag search_path, method: :get, remote: true do %>
+  <%= text_field_tag :query, params[:query], id: "search_query" %>
+  <%= submit_tag "Search", id: "search_submit" %>
 <% end %>
+
+<div id="search_results">
+  <!-- Results will be displayed here -->
+</div>
 
 <div id="search-results">
   <% if @results.present? %>
@@ -11,7 +13,5 @@
       <h2><%= result.title %></h2>
       <p><%= result.content %></p>
     <% end %>
-  <% else %>
-    <p>No results found</p>
   <% end %>
 </div>
