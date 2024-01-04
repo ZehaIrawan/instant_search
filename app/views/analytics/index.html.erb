@@ -1,3 +1,8 @@
 <h1>Analytics#index</h1>
 
+<% @SearchLog.each do |log| %>
+  <%= log.query %>
+  <%= log.ip_address %>
+<% end %>
+
  <%= link_to "Home","/" %>
