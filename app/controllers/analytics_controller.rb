@@ -1,5 +1,5 @@
 class AnalyticsController < ApplicationController
   def index
-    @SearchLog = SearchLog.all
+    @search_logs = SearchLog.all
   end
 end

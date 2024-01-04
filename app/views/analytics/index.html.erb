@@ -1,9 +1,20 @@
-<h1>Analytics#index</h1>
+<h1>Analytics</h1>
 
-<% @SearchLog.each do |log| %>
-  <%= log.query %>
-  <%= log.ip_address %>
-  <span>===</span>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Query</th>
+      <th>IP Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @search_logs.each do |log| %>
+      <tr>
+        <td><%= log.query %></td>
+        <td><%= log.ip_address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
- <%= link_to "Home","/" %>
+<%= link_to "Home", "/" %>
