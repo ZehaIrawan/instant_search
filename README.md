@@ -1,24 +1,9 @@
-# README
+# Handling Pyramid problem
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Delay Debounce
+2. Check if previous query from the same IP is included in the current query
 
-Things you may want to cover:
+# Handling scaling with sidekiq
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Search doesnt if navigate to analytics then come back
