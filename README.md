@@ -10,7 +10,7 @@ With sidekiq we can put it in the background task and make it faster as it's usi
 
 Note: request.remote_ip is changing as i type, but working properly without sidekiq
 
-## Bug
+## Bug/Todo
 [x] Search doesn't work if navigate to analytics then come back
 [] trends on what people are searching for the most.
 [] seeds run everytime I deploy, need to delete first
