@@ -1,18 +1,23 @@
+
+
+
 <table>
   <thead>
     <tr>
       <th>Query</th>
-      <th>IP Address</th>
+      <th>Unique IP total searches</th>
     </tr>
   </thead>
   <tbody>
-    <% @search_logs.each do |log| %>
+    <% @trends.each do |trend| %>
       <tr>
-        <td><%= log.query %></td>
-        <td><%= log.ip_address %></td>
+        <td><%= trend.query %></td>
+        <td><%= trend.user_count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
 
 
