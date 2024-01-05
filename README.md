@@ -5,5 +5,7 @@
 
 # Handling scaling with sidekiq
 
-
-- Search doesnt if navigate to analytics then come back
+## Bug
+[x] Search doesn't work if navigate to analytics then come back
+[] trends on what people are searching for the most.
+[] seeds run everytime I deploy, need to delete first
