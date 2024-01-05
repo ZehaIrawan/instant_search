@@ -3,10 +3,13 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 table {
   border-collapse: collapse;
+  max-width: 1140px;
   width: 100%;
+  margin: 5vh auto;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
 }

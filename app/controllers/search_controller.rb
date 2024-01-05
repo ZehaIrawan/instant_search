@@ -1,4 +1,8 @@
 class SearchController < ApplicationController
+  def index
+    @articles = Article.all
+  end
+
   def search
     query = params[:query].presence
     if query.present?
@@ -10,7 +14,7 @@ class SearchController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # Render the HTML by default
+      # format.html # Render the HTML by default
       format.js   # Render JavaScript for AJAX requests
     end
   end
