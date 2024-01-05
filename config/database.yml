@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: instant_search_production
-  username: instant_search
-  password: <%= ENV['INSTANT_SEARCH_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
