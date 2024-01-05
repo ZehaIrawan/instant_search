@@ -13,6 +13,6 @@ Note: request.remote_ip is changing as i type, but working properly without side
 
 ## Bug/Todo
 - [x] Search doesn't work if navigate to analytics then come back
-- [] trends on what people are searching for the most.
-- [] seeds run everytime I deploy, need to delete first
+- [x] trends on what people are searching for the most.
+- [] seeds run everytime I deploy, need to modify build script
 - [] test with rspec
