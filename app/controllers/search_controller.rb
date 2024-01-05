@@ -14,8 +14,7 @@ class SearchController < ApplicationController
     end
 
     respond_to do |format|
-      # format.html # Render the HTML by default
-      format.js   # Render JavaScript for AJAX requests
+      format.js
     end
   end
 
