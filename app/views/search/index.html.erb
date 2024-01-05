@@ -35,24 +35,28 @@
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.getElementById('search_query');
   var searchResults = document.getElementById('search_results');
+  var timeoutId;
 
   searchInput.addEventListener('input', function() {
-    var query = searchInput.value;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function() {
+      var query = searchInput.value;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/search?query=' + encodeURIComponent(query), true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.responseType = 'text';
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/search?query=' + encodeURIComponent(query), true);
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.responseType = 'text';
 
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        eval(xhr.responseText)
-      } else {
-        console.error('Search request failed.');
-      }
-    };
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          eval(xhr.responseText);
+        } else {
+          console.error('Search request failed.');
+        }
+      };
 
-    xhr.send();
+      xhr.send();
+    }, 500);
   });
 });
 

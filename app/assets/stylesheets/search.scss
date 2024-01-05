@@ -32,6 +32,13 @@ header {
   .search-results {
     background: white;
     position: absolute;
+
+    ul li {
+      list-style: none;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+    }
   }
 }
 
