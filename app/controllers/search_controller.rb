@@ -22,8 +22,19 @@ class SearchController < ApplicationController
   private
 
   def create_search_log(query)
-    print(request.remote_ip,"ip")
-    user_ip = request.remote_ip
-    SearchLog.create(query: query, ip_address: user_ip)
+  user_ip = request.remote_ip
+  previous_query = SearchLog.where(ip_address: user_ip).order(created_at: :desc).pluck(:query).first
+
+  if previous_query.present?
+    if query.downcase.include?(previous_query.downcase)
+      summarized_query = query
+    else
+      summarized_query = "#{previous_query}, #{query}"
+    end
+  else
+    summarized_query = query
+  end
+
+  SearchLog.create(query: summarized_query, ip_address: user_ip)
   end
 end

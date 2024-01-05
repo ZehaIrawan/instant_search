@@ -4,3 +4,6 @@
 2. Check if previous query from the same IP is included in the current query
 
 # Handling scaling with sidekiq
+
+
+- Search doesnt if navigate to analytics then come back
