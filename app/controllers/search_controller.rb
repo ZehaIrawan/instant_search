@@ -21,7 +21,9 @@ class SearchController < ApplicationController
   private
 
   def create_search_log_async(query)
-    user_ip = request.headers['X-Forwarded-For']
+    user_ips = request.headers['X-Forwarded-For']
+    user_ip = user_ips.split(',').map(&:strip).first
+    
     Rails.logger.info("User IP: #{user_ip}")
     SearchLogWorker.perform_async(query, user_ip)
   end
