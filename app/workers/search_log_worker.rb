@@ -2,6 +2,7 @@ class SearchLogWorker
   include Sidekiq::Worker
 
   def perform(query, user_ip)
+    Rails.logger.info("Worker - User IP: #{user_ip}")
     previous_query = SearchLog.where(ip_address: user_ip).order(created_at: :desc).pluck(:query).first
 
     if previous_query.present? && query.downcase.include?(previous_query.downcase)

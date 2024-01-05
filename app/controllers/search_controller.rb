@@ -22,6 +22,7 @@ class SearchController < ApplicationController
 
   def create_search_log_async(query)
     user_ip = request.remote_ip
-    SearchLogWorker.perform_async(query, user_ip) 
+    Rails.logger.info("User IP: #{user_ip}")
+    SearchLogWorker.perform_async(query, user_ip)
   end
 end
