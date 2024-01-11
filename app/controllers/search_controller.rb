@@ -22,19 +22,19 @@ class SearchController < ApplicationController
     end
   end
 
-  private
+ private
 
-  def create_search_log_async(query)
-    user_ips = request.headers['X-Forwarded-For']
-    if user_ips
-      user_ip = user_ips.split(',').map(&:strip).first
-    else
-      user_ip = request.remote_ip
-    end
+def create_search_log_async(query)
+  user_ips = request.headers['X-Forwarded-For']
+  user_ip = user_ips ? user_ips.split(',').map(&:strip).first : request.remote_ip
 
-    # Use Sidekiq to create the SearchLog asynchronously on dev
-   Rails.env.development? SearchLogWorker.perform_async(query, user_ip)
-   Rails.env.production? previous_query = SearchLog.where(ip_address: user_ip).order(created_at: :desc).pluck(:query).first
+  # Use Sidekiq to create the SearchLog asynchronously in development
+  if Rails.env.development?
+    SearchLogWorker.perform_async(query, user_ip)
+  end
+
+  if Rails.env.production?
+    previous_query = SearchLog.where(ip_address: user_ip).order(created_at: :desc).pluck(:query).first
 
     if previous_query.present? && query.downcase.include?(previous_query.downcase)
       SearchLog.where(ip_address: user_ip, query: previous_query).delete_all
@@ -46,4 +46,5 @@ class SearchController < ApplicationController
     # Create the SearchLog asynchronously
     SearchLog.create(query: summarized_query, ip_address: user_ip)
   end
+end
 end
