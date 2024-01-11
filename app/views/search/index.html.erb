@@ -3,20 +3,12 @@
 <div class="search-container">
 <div class="searchbar" data-controller="hello">
 <h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
-<input type="text" id="search_query" placeholder="What can we help you with">
+<input type="text" id="search_query" placeholder="What can we help you with" data-hello-target="query" data-action="hello#input">
 
-<div id="search_results">
+<div data-hello-target="results" class="search-results">
   <!-- Results will be displayed here -->
 </div>
 
-<div id="search-results">
-  <% if @results.present? %>
-    <% @results.each do |result| %>
-      <h2><%= result.title %></h2>
-      <p><%= result.content %></p>
-    <% end %>
-  <% end %>
-</div>
 
 </div>
 </div>
@@ -31,30 +23,3 @@
 <% end %>
 </div>
 
-<script>
-  var searchInput = document.getElementById('search_query');
-  var searchResults = document.getElementById('search_results');
-  var timeoutId;
-
-  searchInput.addEventListener('input', function() {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(function() {
-      var query = searchInput.value;
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/search?query=' + encodeURIComponent(query), true);
-      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-      xhr.responseType = 'text';
-
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          eval(xhr.responseText);
-        } else {
-          console.error('Search request failed.');
-        }
-      };
-
-      xhr.send();
-    }, 500);
-  });
-</script>

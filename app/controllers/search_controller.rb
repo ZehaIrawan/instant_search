@@ -13,8 +13,11 @@ class SearchController < ApplicationController
       @results = []
     end
 
+    # respond_to do |format|
+    #   format.json
+    # end
     respond_to do |format|
-      format.js
+      format.json { render json: @results } # Explicitly render JSON response
     end
   end
 
